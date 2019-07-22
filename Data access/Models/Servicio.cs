@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Data_access.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,20 +11,32 @@ using System.Threading.Tasks;
 namespace Data_access.Models
 {
     [Table("Servicios")]
-    class Servicio
+    class Servicio : ITimeStamp
     {
         public int Id { get; set; }
+        [Required]
+        [StringLength(300, MinimumLength = 10)]
         public string Descripcion { get; set; }
-        public DateTime HoraInicio { get; set; }
+        [Required]
+        public DateTime HoraServicio { get; set; }
+        [Required]
         public DateTime HoraFin { get; set; }
         [Required]
         [Range(1, 24)]
         public int HorasEstimadas { get; set; }
         [Required]
-        public DateTime FechaInicio { get; set; }
+        public DateTime FechaServicio { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 4)]
         public string DireccionServicio { get; set; }
-        public double LimiteInferiorPrecio { get; set; }
-        public double LimiteSuperiorPrecio { get; set; }
+        [Required]
+        [Range(10000, 99999999999)]
+        public decimal PrecioMinimo { get; set; }
+        [Required]
+        [Range(10000, 99999999999)]
+        public decimal PrecioMaximo { get; set; }
+        [Required]
+        [DefaultValue(false)]
         public bool PSPersonal { get; set; }
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
@@ -30,5 +44,7 @@ namespace Data_access.Models
         public PrestadorServicio PrestadorServicio { get; set; }
         public IEnumerable<Pago> Pagos { get; set; }
         public Calificacion Calificacion { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public DateTime FechaMoficiacion { get; set; }
     }
 }

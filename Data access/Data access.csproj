@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HomeServicesContext.cs" />
+    <Compile Include="Interfaces\ITimeStamp.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Calificacion.cs" />
     <Compile Include="Models\Cliente.cs" />

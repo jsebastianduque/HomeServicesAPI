@@ -1,4 +1,5 @@
-﻿using Data_access.Models;
+﻿using Data_access.Interfaces;
+using Data_access.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,5 +24,35 @@ namespace Data_access
         public DbSet<PSHabilidadEspecifica> PSHabilidadesEspecificas { get; set; }
         public DbSet<Rol> Roles { get; set; }
         public DbSet<Servicio> Servicios { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
+        {
+            dbModelBuilder.Entity<Servicio>().Property(atributo => atributo.PrecioMaximo).HasPrecision(11, 2);
+            dbModelBuilder.Entity<Servicio>().Property(atributo => atributo.PrecioMinimo).HasPrecision(11, 2);
+            dbModelBuilder.Entity<PSHabilidadEspecifica>().Property(atributo => atributo.PrecioHora).HasPrecision(11, 2);
+            dbModelBuilder.Entity<Pago>().Property(atributo => atributo.Monto).HasPrecision(11, 2);
+            base.OnModelCreating(dbModelBuilder);
+        }
+
+        public override int SaveChanges()
+        {
+            AddTimestamps();
+            return base.SaveChanges();
+        }
+
+        private void AddTimestamps()
+        {
+            var entities = ChangeTracker.Entries().Where(x => x.Entity is ITimeStamp && (x.State == EntityState.Added || x.State == EntityState.Modified));
+
+            foreach (var entity in entities)
+            {
+                if (entity.State == EntityState.Added)
+                {
+                    ((ITimeStamp)entity.Entity).FechaCreacion = DateTime.Now;
+                }
+
+                ((ITimeStamp)entity.Entity).FechaMoficiacion = DateTime.Now;
+            }
+        }
     }
 }

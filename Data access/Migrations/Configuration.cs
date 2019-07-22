@@ -1,5 +1,6 @@
 namespace Data_access.Migrations
 {
+    using Data_access.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -10,6 +11,7 @@ namespace Data_access.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Data_access.HomeServicesContext context)
