@@ -35,8 +35,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Services\" />
+    <Compile Include="Interfaces\IServicios.cs" />
+    <Compile Include="Services\ServiciosCalificacion.cs" />
+    <Compile Include="Services\ServiciosHabilidad.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
