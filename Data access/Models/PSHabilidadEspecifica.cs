@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Data_access.Models
 {
     [Table("PSHabilidadesEspecificas")]
-    public class PSHabilidadEspecifica : ITimeStamp
+    class PSHabilidadEspecifica : ITimeStamp
     {
         public int Id { get; set; }
         [Required]

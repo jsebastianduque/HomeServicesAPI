@@ -8,10 +8,10 @@ namespace Business_logic.Interfaces
 {
     interface IServicios
     {
-        void crear(Object objeto);
-        void actualizar(Object objecto);
-        void eliminar(Object objecto);
+        void create(Object objeto);
+        void update(Object objecto);
+        void delete(Object objecto);
 
-        void obtener(Object objeto); 
+        void get(Object objeto); 
     }
 }

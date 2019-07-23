@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Data_access.Models
 {
     [Table("Servicios")]
-    public class Servicio : ITimeStamp
+    class Servicio : ITimeStamp
     {
         public int Id { get; set; }
         [Required]

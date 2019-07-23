@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data_access
 {
-    public class HomeServicesContext : DbContext
+    class HomeServicesContext : DbContext
     {
         public HomeServicesContext() : base("HomeServicesAPIDB") { }
 

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Data_access.Models
 {
     [Table("Cuentas")]
-    public class Cuenta : ITimeStamp
+    class Cuenta : ITimeStamp
     {
         [ForeignKey("Persona")]
         public int Id { get; set; }
