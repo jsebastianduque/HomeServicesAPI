@@ -14,5 +14,7 @@ namespace Data_access.Models
         public DateTime FechaAfiliacion { get; set; }
         public IEnumerable<Servicio> Servicios { get; set; }
         public IEnumerable<PSHabilidadEspecifica> Habilidades { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public DateTime FechaMoficiacion { get; set; }
     }
 }
