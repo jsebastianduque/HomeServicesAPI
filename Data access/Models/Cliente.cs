@@ -10,12 +10,10 @@ using System.Threading.Tasks;
 namespace Data_access.Models
 {
     [Table("Clientes")]
-    class Cliente : Persona, ITimeStamp
+    class Cliente : Persona
     {
         [Range(0,int.MaxValue)]
         public int Puntos { get; set; }
         public IEnumerable<Servicio> Servicios { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public DateTime FechaMoficiacion { get; set; }
     }
 }

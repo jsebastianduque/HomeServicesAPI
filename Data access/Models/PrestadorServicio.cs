@@ -9,12 +9,10 @@ using System.Threading.Tasks;
 namespace Data_access.Models
 {
     [Table("PrestadoresServicio")]
-    class PrestadorServicio : Persona, ITimeStamp
+    class PrestadorServicio : Persona
     {
         public DateTime FechaAfiliacion { get; set; }
         public IEnumerable<Servicio> Servicios { get; set; }
         public IEnumerable<PSHabilidadEspecifica> Habilidades { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public DateTime FechaMoficiacion { get; set; }
     }
 }
