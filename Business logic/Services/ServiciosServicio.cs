@@ -4,29 +4,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data_access;
+using Data_access.Models;
 
 namespace Business_logic.Services
 {
-    class ServiciosServicio : IServicios
+    public class ServiciosServicio
     {
-        public void create(object objeto)
+        HomeServicesContext databaseContext = new HomeServicesContext();
+        
+        public Servicio Get(int id)
         {
-            
+            return databaseContext.Servicios.Find(id);
         }
 
-        public void delete(object objecto)
+        public IEnumerable<Servicio> Get()
         {
-            throw new NotImplementedException();
+            return databaseContext.Servicios.ToList();
         }
 
-        public void get(object objeto)
+        public void Update(Servicio servicio)
         {
-            throw new NotImplementedException();
+            var updateServicio = databaseContext.Servicios.Find(servicio.Id);
+            updateServicio = servicio;
+            databaseContext.SaveChanges();
         }
 
-        public void update(object objecto)
+        public void Add(Servicio servicio)
         {
-            throw new NotImplementedException();
+            databaseContext.Servicios.Add(servicio);
+            databaseContext.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var servicio = databaseContext.Servicios.Find(id);
+            databaseContext.Servicios.Remove(servicio);
+            databaseContext.SaveChanges();
         }
     }
 }

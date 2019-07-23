@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Data_access.Models
 {
     [Table("PrestadoresServicio")]
-    class PrestadorServicio : Persona
+    public class PrestadorServicio : Persona
     {
         public DateTime FechaAfiliacion { get; set; }
         public IEnumerable<Servicio> Servicios { get; set; }

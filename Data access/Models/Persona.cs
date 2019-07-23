@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Data_access.Models
 {
     [Table("Personas")]
-    class Persona : ITimeStamp
+    public class Persona : ITimeStamp
     {
         public int Id { get; set; }
         [Required]

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Data_access.Models
 {
     [Table("Habilidades")]
-    class Habilidad : ITimeStamp
+    public class Habilidad : ITimeStamp
     {
         public int Id { get; set; }
         [Required]

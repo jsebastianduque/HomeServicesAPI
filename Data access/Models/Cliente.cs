@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Data_access.Models
 {
     [Table("Clientes")]
-    class Cliente : Persona, ITimeStamp
+    public class Cliente : Persona, ITimeStamp
     {
         [Range(0,int.MaxValue)]
         public int Puntos { get; set; }

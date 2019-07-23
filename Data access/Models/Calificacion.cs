@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Data_access.Models
 {
     [Table("Calificaciones")]
-    class Calificacion : ITimeStamp
+    public class Calificacion : ITimeStamp
     {   
         [ForeignKey("Servicio")]
         public int Id { get; set; }

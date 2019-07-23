@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data access\Data access.csproj">
@@ -45,6 +46,7 @@
     <Compile Include="Interfaces\IServicios.cs" />
     <Compile Include="Services\ServiciosCalificacion.cs" />
     <Compile Include="Services\ServiciosHabilidad.cs" />
+    <Compile Include="Services\ServiciosPS.cs" />
     <Compile Include="Services\ServiciosServicio.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +56,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
