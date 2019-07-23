@@ -7,16 +7,11 @@ using System.Threading.Tasks;
 
 namespace Business_logic.Services
 {
-    class ServiciosHabilidad : IServicios
+    class ServiciosServicio : IServicios
     {
-        public void crear(object objeto)
-        {
-            throw new NotImplementedException();
-        }
-
         public void create(object objeto)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void delete(object objecto)
@@ -24,17 +19,7 @@ namespace Business_logic.Services
             throw new NotImplementedException();
         }
 
-        public void eliminar(object objecto)
-        {
-            throw new NotImplementedException();
-        }
-
         public void get(object objeto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void modificar(object objecto)
         {
             throw new NotImplementedException();
         }
