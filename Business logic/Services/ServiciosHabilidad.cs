@@ -1,5 +1,6 @@
 ﻿using Business_logic.Interfaces;
 using System;
+using Data_access;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,21 +8,15 @@ using System.Threading.Tasks;
 
 namespace Business_logic.Services
 {
-    class ServiciosHabilidad : IServicios
+
+    class ServiciosHabilidad 
     {
-        public void crear(object objeto)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void eliminar(object objecto)
-        {
-            throw new NotImplementedException();
-        }
+        HomeServicesContext BD = new HomeServicesContext();
 
-        public void modificar(object objecto)
+        public void Obtener()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
