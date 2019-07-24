@@ -10,19 +10,6 @@ namespace Business_logic.Services
 
     class ServiciosCalificacion
     {
-        public void crear(object objeto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void eliminar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void modificar(object objecto)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

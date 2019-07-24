@@ -253,7 +253,7 @@
       <Name>Business logic</Name>
     </ProjectReference>
     <ProjectReference Include="..\Data access\Data access.csproj">
-      <Project>{88e1ae12-4f76-4b47-9bac-5e77a03289d3}</Project>
+      <Project>{88E1AE12-4F76-4B47-9BAC-5E77A03289D3}</Project>
       <Name>Data access</Name>
     </ProjectReference>
   </ItemGroup>

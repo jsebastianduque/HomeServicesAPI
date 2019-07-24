@@ -5,43 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data_access.Models;
 
 namespace Business_logic.Services
 {
 
-    class ServiciosHabilidad 
+    public class ServiciosHabilidad 
     {
 
         HomeServicesContext BD = new HomeServicesContext();
 
-        public void create(object objeto)
+        public IEnumerable<Habilidad> Get()
         {
-            throw new NotImplementedException();
+            return this.BD.Habilidades.ToList();
+
         }
 
-        public void delete(object objecto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void eliminar(object objecto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void get(object objeto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void modificar(object objecto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void update(object objecto)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
