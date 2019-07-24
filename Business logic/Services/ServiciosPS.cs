@@ -13,15 +13,29 @@ namespace Business_logic.Services
         HomeServicesContext databaseContext = new HomeServicesContext();
 
         public IEnumerable<PrestadorServicio> FilterByHour(int cantidadHoras, DateTime inicio, DateTime fin,
-            IEnumerable<PrestadorServicio> prestadores)
+            DateTime fechaServicio, IEnumerable<PrestadorServicio> prestadores)
         {
-            IEnumerable<PrestadorServicio> prestadoresResultado = new List<PrestadorServicio>() { };
+            IList<PrestadorServicio> prestadoresResultado = new List<PrestadorServicio>() { };
+            IList<Servicio> serviciosEnElDia = new List<Servicio>() { };
 
             if (DateTime.Compare(inicio, fin) < 0 &&
                 (inicio.Hour + cantidadHoras) == fin.Hour &&
                  fin.Minute == inicio.Minute)
             {
-                
+                foreach (PrestadorServicio prestador in prestadores)
+                {
+                    IEnumerable<Servicio> servicios = prestador.Servicios.ToList();
+
+                    foreach (Servicio servicio in servicios)
+                    {
+                        if (fechaServicio.Year == servicio.FechaServicio.Year && 
+                            fechaServicio.Month == servicio.FechaServicio.Month &&
+                            fechaServicio.Day == servicio.FechaServicio.Day)
+                        {
+
+                        }
+                    }
+                }
             }
 
             return prestadoresResultado;

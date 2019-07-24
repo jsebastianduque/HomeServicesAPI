@@ -20,8 +20,6 @@ namespace Data_access.Models
         [Required]
         public DateTime HoraServicio { get; set; }
         [Required]
-        public DateTime HoraFin { get; set; }
-        [Required]
         [Range(1, 24)]
         public int HorasEstimadas { get; set; }
         [Required]
