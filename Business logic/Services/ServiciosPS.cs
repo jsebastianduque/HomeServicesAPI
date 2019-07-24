@@ -12,19 +12,25 @@ namespace Business_logic.Services
     {
         HomeServicesContext databaseContext = new HomeServicesContext();
 
-        public IEnumerable<PrestadorServicio> FilterByHour(DateTime inicio, DateTime fin,
+        public IEnumerable<PrestadorServicio> FilterByHour(int cantidadHoras, DateTime inicio, DateTime fin,
             IEnumerable<PrestadorServicio> prestadores)
         {
             IEnumerable<PrestadorServicio> prestadoresResultado = new List<PrestadorServicio>() { };
 
             if (DateTime.Compare(inicio, fin) < 0 &&
-                (inicio.Hour + 1) == fin.Hour &&
+                (inicio.Hour + cantidadHoras) == fin.Hour &&
                  fin.Minute == inicio.Minute)
             {
                 
             }
 
             return prestadoresResultado;
+        }
+
+        private DateTime cleanDateTime(DateTime dateTime)
+        {
+            return new DateTime(2010, 1, 1, dateTime.Hour, dateTime.Minute,
+                dateTime.Second, dateTime.Millisecond, dateTime.Kind);
         }
     }
 }
