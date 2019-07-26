@@ -19,8 +19,6 @@ namespace Business_logic.Services
         public IList<Habilidad> Get()                 
         {
             return BD.Habilidades.ToList();
-               
-
         }
 
     }

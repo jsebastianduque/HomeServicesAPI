@@ -40,7 +40,7 @@ namespace Data_access.Models
         public Cliente Cliente { get; set; }
         public int PrestadorServicioId { get; set; }
         public PrestadorServicio PrestadorServicio { get; set; }
-        public IEnumerable<Pago> Pagos { get; set; }
+        public IList<Pago> Pagos { get; set; }
         public Calificacion Calificacion { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaMoficiacion { get; set; }

@@ -19,7 +19,7 @@ namespace Data_access.Models
         [Required]
         [StringLength(300, MinimumLength = 4)]
         public string Descripcion { get; set; }
-        public IEnumerable<Cuenta> Cuentas { get; set; }
+        public IList<Cuenta> Cuentas { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaMoficiacion { get; set; }
     }

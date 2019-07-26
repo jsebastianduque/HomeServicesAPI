@@ -14,6 +14,6 @@ namespace Data_access.Models
     {
         [Range(0,int.MaxValue)]
         public int Puntos { get; set; }
-        public IEnumerable<Servicio> Servicios { get; set; }
+        public IList<Servicio> Servicios { get; set; }
     }
 }

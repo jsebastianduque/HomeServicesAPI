@@ -21,7 +21,7 @@ namespace Data_access.Models
         public string Descripcion { get; set; }
         public int HabilidadId { get; set; }
         public Habilidad Habilidad { get; set; }
-        public IEnumerable<PSHabilidadEspecifica> PrestadoresServicio { get; set; }
+        public IList<PSHabilidadEspecifica> PrestadoresServicio { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaMoficiacion { get; set; }
     }
