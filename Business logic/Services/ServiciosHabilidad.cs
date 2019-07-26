@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data_access.Models;
+using System.Data.Entity;
 
 namespace Business_logic.Services
 {
@@ -15,9 +16,10 @@ namespace Business_logic.Services
 
         HomeServicesContext BD = new HomeServicesContext();
 
-        public IEnumerable<Habilidad> Get()
+        public IList<Habilidad> Get()                 
         {
-            return this.BD.Habilidades.ToList();
+            return BD.Habilidades.ToList();
+               
 
         }
 
