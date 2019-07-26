@@ -42,5 +42,12 @@ namespace Business_logic.Services
             databaseContext.Servicios.Remove(servicio);
             databaseContext.SaveChanges();
         }
+
+        public PrestadorServicio AssignService(Servicio servicio)
+        {
+            servicio.PrestadorServicio = databaseContext.PrestadoresServicio.First();
+            Add(servicio);
+            return servicio.PrestadorServicio;
+        }
     }
 }
