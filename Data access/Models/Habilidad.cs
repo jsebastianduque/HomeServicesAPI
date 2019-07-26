@@ -19,8 +19,10 @@ namespace Data_access.Models
         [Required]
         [StringLength(300, MinimumLength = 10)]
         public string Descripcion { get; set; }
-        public IEnumerable<HabilidadEspecifica> HabilidadesEspecificas { get; set; }
+        public virtual IList<HabilidadEspecifica> habilidadEspecificas { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaMoficiacion { get; set; }
+
+        
     }
 }
