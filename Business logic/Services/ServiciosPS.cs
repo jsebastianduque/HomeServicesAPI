@@ -17,6 +17,7 @@ namespace Business_logic.Services
         {
             IList<PrestadorServicio> prestadoresResultado = new List<PrestadorServicio>() { };
             IList<Servicio> serviciosEnElDia = new List<Servicio>() { };
+            bool estaDisponible = true;
 
             if (DateTime.Compare(inicio, fin) < 0 &&
                 (inicio.Hour + cantidadHoras) == fin.Hour &&
@@ -28,11 +29,22 @@ namespace Business_logic.Services
 
                     foreach (Servicio servicio in servicios)
                     {
+
                         if (fechaServicio.Year == servicio.FechaServicio.Year && 
                             fechaServicio.Month == servicio.FechaServicio.Month &&
                             fechaServicio.Day == servicio.FechaServicio.Day)
                         {
+                            if (inicio.Hour == servicio.HoraServicio.Hour)
+                            {
+                                if(inicio.Minute == servicio.HoraServicio.Minute)
+                                {
+                                    estaDisponible = false;
+                                    break;
+                                }else if (true)
+                                {
 
+                                }
+                            }
                         }
                     }
                 }
@@ -43,8 +55,7 @@ namespace Business_logic.Services
 
         private DateTime cleanDateTime(DateTime dateTime)
         {
-            return new DateTime(2010, 1, 1, dateTime.Hour, dateTime.Minute,
-                dateTime.Second, dateTime.Millisecond, dateTime.Kind);
+            return new DateTime(2010, 1, 1, dateTime.Hour, dateTime.Minute, 0, 0, dateTime.Kind);
         }
     }
 }
