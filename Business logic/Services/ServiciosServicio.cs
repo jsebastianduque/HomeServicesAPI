@@ -49,11 +49,11 @@ namespace Business_logic.Services
             HabilidadEspecifica habilidad = databaseContext.HabilidadesEspecificas.Find(habilidadEspecificaId);
             IList<PrestadorServicio> prestadores = databaseContext.PrestadoresServicio.ToList();
             prestadores = serviciosPS.FilterByConcreteSkill(habilidad, prestadores);
-            prestadores = serviciosPS.FilterByCost(servicio.PrecioMinimo, servicio.PrecioMaximo, prestadores);
-            //prestadores = serviciosPS.FilterByHour(servicio.HoraServicio, servicio.HorasEstimadas, 
-                //servicio.FechaServicio, prestadores);
+            prestadores = serviciosPS.FilterByCost(servicio.PrecioMinimo, servicio.PrecioMaximo, habilidad,prestadores);
+            prestadores = serviciosPS.FilterByHour(servicio.HoraServicio, servicio.HorasEstimadas, 
+                servicio.FechaServicio, prestadores);
             servicio.Cliente = databaseContext.Clientes.Find(servicio.ClienteId);
-
+            
             if (prestadores.Count() == 0)
             {
                 return null;

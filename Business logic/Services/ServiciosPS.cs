@@ -71,33 +71,22 @@ namespace Business_logic.Services
         public IList<PrestadorServicio> FilterByConcreteSkill(HabilidadEspecifica habilidadEspecifica,
             IList<PrestadorServicio> prestadores)
         {
-            IList<PrestadorServicio> prestadoresResultado = new List<PrestadorServicio>() { };
-
-            foreach (PrestadorServicio prestador in prestadores)
-            {
-                foreach (PSHabilidadEspecifica psHabilidad in prestador.Habilidades)
-                {
-                    if (psHabilidad.HabilidadEspecifica == habilidadEspecifica)
-                    {
-                        prestadoresResultado.Add(prestador);
-                        break;
-                    }
-                }
-            }
-
-            return prestadoresResultado;
+            return prestadores.Where(p => p.Habilidades.Where(h => h.HabilidadEspecifica == habilidadEspecifica).Count() == 1).ToList();
         }
 
         public IList<PrestadorServicio> FilterByCost(decimal minimo, decimal maximo, 
-            IList<PrestadorServicio> prestadores)
+            HabilidadEspecifica habilidadEspecifica, IList<PrestadorServicio> prestadores)
         {
             IList<PrestadorServicio> prestadoresResultado = new List<PrestadorServicio>() { };
+            decimal precioPS = 0;
 
             if (minimo > 0 && maximo > 0)
             {
                 foreach (PrestadorServicio prestador in prestadores)
                 {
-                    if (prestador.PrecioHora <= maximo && prestador.PrecioHora >= minimo)
+                    precioPS = prestador.Habilidades.Where(h => h.HabilidadEspecifica == habilidadEspecifica).First().PrecioHora;
+
+                    if (precioPS <= maximo && precioPS >= minimo)
                     {
                         prestadoresResultado.Add(prestador);
                     }

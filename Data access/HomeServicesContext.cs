@@ -31,7 +31,6 @@ namespace Data_access
             dbModelBuilder.Entity<Servicio>().Property(atributo => atributo.PrecioMinimo).HasPrecision(11, 2);
             dbModelBuilder.Entity<PSHabilidadEspecifica>().Property(atributo => atributo.PrecioHora).HasPrecision(11, 2);
             dbModelBuilder.Entity<Pago>().Property(atributo => atributo.Monto).HasPrecision(11, 2);
-            dbModelBuilder.Entity<PrestadorServicio>().Property(atributo => atributo.PrecioHora).HasPrecision(11, 2);
             base.OnModelCreating(dbModelBuilder);
         }
 
