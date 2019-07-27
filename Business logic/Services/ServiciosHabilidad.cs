@@ -11,16 +11,19 @@ using System.Data.Entity;
 namespace Business_logic.Services
 {
 
+    /// <summary>Clase para gestionar los servicios CRUD para habilidad, es prestado a los controladores
+    /// de la capa de presentación
+    /// </summary>
     public class ServiciosHabilidad 
     {
 
         HomeServicesContext BD = new HomeServicesContext();
 
+        /// <summary>Permite obtener las habilidades generales</summary>
+        /// <return>Retorna la lista de habilidades generales obtenidas desde la BD</return>
         public IList<Habilidad> Get()                 
         {
-            return BD.Habilidades.ToList();
-               
-
+            return BD.Habilidades.ToList();   
         }
 
     }
