@@ -75,9 +75,13 @@ namespace Business_logic.Services
 
             foreach (PrestadorServicio prestador in prestadores)
             {
-                if (prestador.Habilidades.Contains(habilidadEspecifica))
+                foreach (PSHabilidadEspecifica psHabilidad in prestador.Habilidades)
                 {
-                    prestadoresResultado.Add(prestador);
+                    if (psHabilidad.HabilidadEspecifica == habilidadEspecifica)
+                    {
+                        prestadoresResultado.Add(prestador);
+                        break;
+                    }
                 }
             }
 

@@ -12,6 +12,7 @@ namespace Business_logic.Services
     public class ServiciosServicio
     {
         HomeServicesContext databaseContext = new HomeServicesContext();
+        ServiciosPS serviciosPS = new ServiciosPS();
         
         public Servicio Get(int id)
         {
@@ -43,11 +44,26 @@ namespace Business_logic.Services
             databaseContext.SaveChanges();
         }
 
-        public PrestadorServicio AssignService(Servicio servicio)
+        public PrestadorServicio AssignService(Servicio servicio, int habilidadEspecificaId)
         {
-            servicio.PrestadorServicio = databaseContext.PrestadoresServicio.First();
-            Add(servicio);
-            return servicio.PrestadorServicio;
+            HabilidadEspecifica habilidad = databaseContext.HabilidadesEspecificas.Find(habilidadEspecificaId);
+            IList<PrestadorServicio> prestadores = databaseContext.PrestadoresServicio.ToList();
+            prestadores = serviciosPS.FilterByConcreteSkill(habilidad, prestadores);
+            prestadores = serviciosPS.FilterByCost(servicio.PrecioMinimo, servicio.PrecioMaximo, prestadores);
+            //prestadores = serviciosPS.FilterByHour(servicio.HoraServicio, servicio.HorasEstimadas, 
+                //servicio.FechaServicio, prestadores);
+            servicio.Cliente = databaseContext.Clientes.Find(servicio.ClienteId);
+
+            if (prestadores.Count() == 0)
+            {
+                return null;
+            }
+            else
+            {
+                servicio.PrestadorServicio = prestadores.First();
+                Add(servicio);
+                return servicio.PrestadorServicio;
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Data_access.Models
         [Range(10000, 99999999999)]
         public decimal PrecioHora { get; set; }
         public DateTime FechaAfiliacion { get; set; }
-        public IList<Servicio> Servicios { get; set; }
-        public IList<PSHabilidadEspecifica> Habilidades { get; set; }
+        public virtual IList<Servicio> Servicios { get; set; }
+        public virtual IList<PSHabilidadEspecifica> Habilidades { get; set; }
     }
 }
