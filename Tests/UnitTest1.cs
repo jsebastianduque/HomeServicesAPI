@@ -1,4 +1,5 @@
 ﻿using System;
+using Business_logic.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests
@@ -9,6 +10,7 @@ namespace Tests
         [TestMethod]
         public void TestMethod1()
         {
+            var servicios = new ServiciosHabilidad();
         }
     }
 }
