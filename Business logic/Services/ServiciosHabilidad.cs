@@ -11,7 +11,7 @@ using System.Data.Entity;
 namespace Business_logic.Services
 {
 
-    /// <summary>Clase para gestionar los servicios CRUD para habilidad, es prestado a los controladores
+    /// <summary>Clase para gestionar los servicios CRUD para habilidad,es prestado a los controladores
     /// de la capa de presentación
     /// </summary>
     public class ServiciosHabilidad 
