@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IServicios.cs" />
-    <Compile Include="Services\ServiciosCalificacion.cs" />
     <Compile Include="Services\ServiciosHabilidad.cs" />
     <Compile Include="Services\ServiciosPS.cs" />
     <Compile Include="Services\ServiciosServicio.cs" />
