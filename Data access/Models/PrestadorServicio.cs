@@ -12,9 +12,6 @@ namespace Data_access.Models
     [Table("PrestadoresServicio")]
     public class PrestadorServicio : Persona
     {
-        [Required]
-        [Range(10000, 99999999999)]
-        public decimal PrecioHora { get; set; }
         public DateTime FechaAfiliacion { get; set; }
         public virtual IList<Servicio> Servicios { get; set; }
         public virtual IList<PSHabilidadEspecifica> Habilidades { get; set; }
