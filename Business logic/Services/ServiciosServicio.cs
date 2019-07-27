@@ -18,7 +18,7 @@ namespace Business_logic.Services
             return databaseContext.Servicios.Find(id);
         }
 
-        public IEnumerable<Servicio> Get()
+        public IList<Servicio> Get()
         {
             return databaseContext.Servicios.ToList();
         }

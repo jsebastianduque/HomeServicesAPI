@@ -12,40 +12,55 @@ namespace Business_logic.Services
     {
         HomeServicesContext databaseContext = new HomeServicesContext();
 
-        public IEnumerable<PrestadorServicio> FilterByHour(int cantidadHoras, DateTime inicio, DateTime fin,
-            DateTime fechaServicio, IEnumerable<PrestadorServicio> prestadores)
+        public IList<PrestadorServicio> FilterByHour(DateTime inicio, int cantidadHoras,
+            DateTime fechaServicio, IList<PrestadorServicio> prestadores)
         {
             IList<PrestadorServicio> prestadoresResultado = new List<PrestadorServicio>() { };
-            IList<Servicio> serviciosEnElDia = new List<Servicio>() { };
             bool estaDisponible = true;
+            DateTime fin = new DateTime(inicio.Year,
+                                            inicio.Month,
+                                            inicio.Day,
+                                            inicio.Hour + cantidadHoras,
+                                            inicio.Minute,
+                                            inicio.Second);
 
-            if (DateTime.Compare(inicio, fin) < 0 &&
-                (inicio.Hour + cantidadHoras) == fin.Hour &&
-                 fin.Minute == inicio.Minute)
+            if (DateTime.Compare(fechaServicio, DateTime.Now) > 0 &&
+                 cantidadHoras <= 12 &&
+                 inicio.Hour >= 7 &&
+                 fin.Hour <= 20)
             {
                 foreach (PrestadorServicio prestador in prestadores)
                 {
-                    IEnumerable<Servicio> servicios = prestador.Servicios.ToList();
+                    IList<Servicio> servicios = prestador.Servicios.ToList();
 
                     foreach (Servicio servicio in servicios)
                     {
-
                         if (fechaServicio.Year == servicio.FechaServicio.Year && 
                             fechaServicio.Month == servicio.FechaServicio.Month &&
                             fechaServicio.Day == servicio.FechaServicio.Day)
                         {
-                            if (inicio.Hour == servicio.HoraServicio.Hour)
-                            {
-                                if(inicio.Minute == servicio.HoraServicio.Minute)
-                                {
-                                    estaDisponible = false;
-                                    break;
-                                }else if (true)
-                                {
+                            DateTime horaInicio = servicio.HoraServicio;
+                            DateTime horaFin = new DateTime(horaInicio.Year,
+                                                            horaInicio.Month,
+                                                            horaInicio.Day,
+                                                            horaInicio.Hour + servicio.HorasEstimadas,
+                                                            horaInicio.Minute,
+                                                            horaInicio.Second);
 
-                                }
+                            if ((inicio.Hour >= horaInicio.Hour &&
+                            inicio.Hour <= horaFin.Hour) ||
+                            (fin.Hour <= horaFin.Hour &&
+                            fin.Hour >= horaInicio.Hour))
+                            {
+                                estaDisponible = false;
+                                break;
                             }
                         }
+                    }
+
+                    if (estaDisponible)
+                    {
+                        prestadoresResultado.Add(prestador);
                     }
                 }
             }
@@ -53,7 +68,42 @@ namespace Business_logic.Services
             return prestadoresResultado;
         }
 
-        private DateTime cleanDateTime(DateTime dateTime)
+        public IList<PrestadorServicio> FilterByConcreteSkill(HabilidadEspecifica habilidadEspecifica,
+            IList<PrestadorServicio> prestadores)
+        {
+            IList<PrestadorServicio> prestadoresResultado = new List<PrestadorServicio>() { };
+
+            foreach (PrestadorServicio prestador in prestadores)
+            {
+                if (prestador.Habilidades.Contains(habilidadEspecifica))
+                {
+                    prestadoresResultado.Add(prestador);
+                }
+            }
+
+            return prestadoresResultado;
+        }
+
+        public IList<PrestadorServicio> FilterByCost(decimal minimo, decimal maximo, 
+            IList<PrestadorServicio> prestadores)
+        {
+            IList<PrestadorServicio> prestadoresResultado = new List<PrestadorServicio>() { };
+
+            if (minimo > 0 && maximo > 0)
+            {
+                foreach (PrestadorServicio prestador in prestadores)
+                {
+                    if (prestador.PrecioHora <= maximo && prestador.PrecioHora >= minimo)
+                    {
+                        prestadoresResultado.Add(prestador);
+                    }
+                }
+            }
+
+            return prestadoresResultado;
+        }
+
+        private DateTime CleanDateTime(DateTime dateTime)
         {
             return new DateTime(2010, 1, 1, dateTime.Hour, dateTime.Minute, 0, 0, dateTime.Kind);
         }

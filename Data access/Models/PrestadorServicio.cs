@@ -1,6 +1,7 @@
 ﻿using Data_access.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,10 +12,11 @@ namespace Data_access.Models
     [Table("PrestadoresServicio")]
     public class PrestadorServicio : Persona
     {
+        [Required]
+        [Range(10000, 99999999999)]
+        public decimal PrecioHora { get; set; }
         public DateTime FechaAfiliacion { get; set; }
-        public IEnumerable<Servicio> Servicios { get; set; }
-        public IEnumerable<PSHabilidadEspecifica> Habilidades { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public DateTime FechaMoficiacion { get; set; }
+        public IList<Servicio> Servicios { get; set; }
+        public IList<PSHabilidadEspecifica> Habilidades { get; set; }
     }
 }
