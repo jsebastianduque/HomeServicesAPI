@@ -11,7 +11,7 @@ namespace HomeServices.Controllers
 {
     public class ServiciosController : ApiController
     {
-        ServiciosServicio servicioControl = new ServiciosServicio();
+        readonly ServiciosServicio servicioControl = new ServiciosServicio();
 
         [HttpPost]
         public PrestadorServicio Post(Servicio servicio, int habilidadEspecificaId)

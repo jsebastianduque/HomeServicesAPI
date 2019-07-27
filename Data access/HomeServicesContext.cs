@@ -25,13 +25,13 @@ namespace Data_access
         public DbSet<Rol> Roles { get; set; }
         public DbSet<Servicio> Servicios { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            dbModelBuilder.Entity<Servicio>().Property(atributo => atributo.PrecioMaximo).HasPrecision(11, 2);
-            dbModelBuilder.Entity<Servicio>().Property(atributo => atributo.PrecioMinimo).HasPrecision(11, 2);
-            dbModelBuilder.Entity<PSHabilidadEspecifica>().Property(atributo => atributo.PrecioHora).HasPrecision(11, 2);
-            dbModelBuilder.Entity<Pago>().Property(atributo => atributo.Monto).HasPrecision(11, 2);
-            base.OnModelCreating(dbModelBuilder);
+            modelBuilder.Entity<Servicio>().Property(atributo => atributo.PrecioMaximo).HasPrecision(11, 2);
+            modelBuilder.Entity<Servicio>().Property(atributo => atributo.PrecioMinimo).HasPrecision(11, 2);
+            modelBuilder.Entity<PSHabilidadEspecifica>().Property(atributo => atributo.PrecioHora).HasPrecision(11, 2);
+            modelBuilder.Entity<Pago>().Property(atributo => atributo.Monto).HasPrecision(11, 2);
+            base.OnModelCreating(modelBuilder);
         }
 
         public override int SaveChanges()
