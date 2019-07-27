@@ -26,5 +26,19 @@ namespace Business_logic.Services
             return BD.Habilidades.ToList();   
         }
 
+        /// <summary>Permite obtener una determinada habilidad</summary>
+        /// <return>Retorna una instancia de la habilidad cuyo id es el obtenido por parámetro</return>
+        public Habilidad Get(int id)
+        {
+            Habilidad habilidad = null;
+
+            if(id >= 0)
+            {
+                habilidad = BD.Habilidades.Find(id);
+            }
+
+            return habilidad;
+        }
+
     }
 }

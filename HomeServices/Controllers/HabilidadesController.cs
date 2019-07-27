@@ -22,6 +22,7 @@ namespace HomeServices.Controllers
         /// <summary>Permite 
         /// </summary>
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<Object> Get(HttpRequestMessage request)
         {
             return habilidades.Get().ToList();

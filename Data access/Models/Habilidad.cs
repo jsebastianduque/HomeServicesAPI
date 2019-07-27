@@ -12,6 +12,19 @@ namespace Data_access.Models
     [Table("Habilidades")]
     public class Habilidad : ITimeStamp
     {
+
+        
+        public Habilidad(int id, string Nombre, String Descripcion)
+        {
+            this.Id = id;
+            this.Nombre = Nombre;
+            this.Descripcion = Descripcion;
+
+        }
+
+        public Habilidad() { }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
         [StringLength(30, MinimumLength = 4)]
