@@ -11,8 +11,8 @@ namespace Business_logic.Services
 {
     public class ServiciosServicio
     {
-        HomeServicesContext databaseContext = new HomeServicesContext();
-        ServiciosPS serviciosPS = new ServiciosPS();
+        readonly HomeServicesContext databaseContext = new HomeServicesContext();
+        readonly ServiciosPS serviciosPS = new ServiciosPS();
         
         public Servicio Get(int id)
         {
@@ -53,16 +53,16 @@ namespace Business_logic.Services
             prestadores = serviciosPS.FilterByHour(servicio.HoraServicio, servicio.HorasEstimadas, 
                 servicio.FechaServicio, prestadores);
             servicio.Cliente = databaseContext.Clientes.Find(servicio.ClienteId);
-            
-            if (prestadores.Count() == 0)
-            {
-                return null;
-            }
-            else
+
+            if (prestadores.Any())
             {
                 servicio.PrestadorServicio = prestadores.First();
                 Add(servicio);
                 return servicio.PrestadorServicio;
+            }
+            else
+            {
+                return null;
             }
         }
     }

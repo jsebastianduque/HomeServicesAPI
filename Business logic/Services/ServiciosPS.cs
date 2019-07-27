@@ -10,8 +10,6 @@ namespace Business_logic.Services
 {
     public class ServiciosPS
     {
-        HomeServicesContext databaseContext = new HomeServicesContext();
-
         public IList<PrestadorServicio> FilterByHour(DateTime inicio, int cantidadHoras,
             DateTime fechaServicio, IList<PrestadorServicio> prestadores)
         {
@@ -71,7 +69,7 @@ namespace Business_logic.Services
         public IList<PrestadorServicio> FilterByConcreteSkill(HabilidadEspecifica habilidadEspecifica,
             IList<PrestadorServicio> prestadores)
         {
-            return prestadores.Where(p => p.Habilidades.Where(h => h.HabilidadEspecifica == habilidadEspecifica).Count() == 1).ToList();
+            return prestadores.Where(p => p.Habilidades.Count(h => h.HabilidadEspecifica == habilidadEspecifica) == 1).ToList();
         }
 
         public IList<PrestadorServicio> FilterByCost(decimal minimo, decimal maximo, 
@@ -84,7 +82,7 @@ namespace Business_logic.Services
             {
                 foreach (PrestadorServicio prestador in prestadores)
                 {
-                    precioPS = prestador.Habilidades.Where(h => h.HabilidadEspecifica == habilidadEspecifica).First().PrecioHora;
+                    precioPS = prestador.Habilidades.First(h => h.HabilidadEspecifica == habilidadEspecifica).PrecioHora;
 
                     if (precioPS <= maximo && precioPS >= minimo)
                     {
@@ -94,11 +92,6 @@ namespace Business_logic.Services
             }
 
             return prestadoresResultado;
-        }
-
-        private DateTime CleanDateTime(DateTime dateTime)
-        {
-            return new DateTime(2010, 1, 1, dateTime.Hour, dateTime.Minute, 0, 0, dateTime.Kind);
         }
     }
 }

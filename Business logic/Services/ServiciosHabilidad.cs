@@ -17,7 +17,7 @@ namespace Business_logic.Services
     public class ServiciosHabilidad 
     {
 
-        HomeServicesContext BD = new HomeServicesContext();
+        readonly HomeServicesContext BD = new HomeServicesContext();
 
         /// <summary>Permite obtener las habilidades generales</summary>
         /// <return>Retorna la lista de habilidades generales obtenidas desde la BD</return>
