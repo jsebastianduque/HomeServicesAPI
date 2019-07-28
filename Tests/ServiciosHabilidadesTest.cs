@@ -14,7 +14,6 @@ namespace Tests
     {
         HomeServicesContext BD = new HomeServicesContext();
 
-
         /// <summary>Configuración inicial, se ejecuta de primero, antes que todas las pruebas
         /// </summary>
         [TestInitialize]
@@ -64,7 +63,5 @@ namespace Tests
 
             Assert.IsNull(habilidadObtenida);
         }
-
-       
     }
 }
