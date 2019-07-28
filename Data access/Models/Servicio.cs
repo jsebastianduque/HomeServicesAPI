@@ -13,6 +13,18 @@ namespace Data_access.Models
     [Table("Servicios")]
     public class Servicio : ITimeStamp
     {
+        public Servicio(string descripcion, DateTime horaServicio, int horasEstimadas, DateTime fechaServicio, string direccionServicio, decimal precioMinimo, decimal precioMaximo, bool pSPersonal)
+        {
+            Descripcion = descripcion;
+            HoraServicio = horaServicio;
+            HorasEstimadas = horasEstimadas;
+            FechaServicio = fechaServicio;
+            DireccionServicio = direccionServicio;
+            PrecioMinimo = precioMinimo;
+            PrecioMaximo = precioMaximo;
+            PSPersonal = pSPersonal;
+        }
+
         public int Id { get; set; }
         [Required]
         [StringLength(300, MinimumLength = 10)]
