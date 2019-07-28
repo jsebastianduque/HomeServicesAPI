@@ -7,12 +7,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests
 {
 
-
+    /// <summary>Clase para las pruebas unitarias del servicio habilidades
+    /// </summary>
     [TestClass]
     public class ServiciosHabilidadesTest
     {
         HomeServicesContext BD = new HomeServicesContext();
 
+
+        /// <summary>Configuración inicial, se ejecuta de primero, antes que todas las pruebas
+        /// </summary>
         [TestInitialize]
         public void ConfiguracionPrevia()
         {
@@ -25,20 +29,15 @@ namespace Tests
                  "INSERT INTO Habilidades (Id, Nombre, Descripcion) VALUES (3, 'Plomería', 'Ejemplo servicio plomería');" +
                  "SET IDENTITY_INSERT [HomeServicesAPIDB].[dbo].[HABILIDADES] OFF;");
 
-           // BD.Habilidades.Add(new Habilidad(1,"Carpintería","Ejemplo servicio carpintería"));
-            //BD.Habilidades.Add(new Habilidad(2, "Cerrajería", "Ejemplo servicio cerrajería"));
-            //BD.Habilidades.Add(new Habilidad(3, "Plomería", "Ejemplo servicio plomería"));
-            //BD.Habilidades.Add(new Habilidad() { Id = 4, Nombre = "Ejemplo1", Descripcion = "Ejmplo de serviciijeijfeo "});
+       
 
-            //BD.Database.ExecuteSqlCommand("INSERT INTO Habilidades (Id, Nombre, Descripcion) VALUES (1, 'Carpintería','Ejemplo servicio carpintería')");
-          
-
-            BD.SaveChanges();
+             BD.SaveChanges();
         }
 
-     
-        [TestMethod]
 
+        /// <summary>Caso de prueba en el se pasa como parametro un ID existente en la BD
+        /// </summary>
+        [TestMethod]
         public void Test01()
         {
 
@@ -53,6 +52,9 @@ namespace Tests
 
         }
 
+
+        /// <summary>Prueba en la que se pasa como parametro un ID negativo
+        /// </summary>
         [TestMethod]
         public void Test02()
         {
@@ -62,5 +64,7 @@ namespace Tests
 
             Assert.IsNull(habilidadObtenida);
         }
+
+       
     }
 }
