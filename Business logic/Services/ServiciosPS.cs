@@ -15,17 +15,9 @@ namespace Business_logic.Services
         {
             IList<PrestadorServicio> prestadoresResultado = new List<PrestadorServicio>() { };
             bool estaDisponible = true;
-            DateTime fin = new DateTime(inicio.Year,
-                                            inicio.Month,
-                                            inicio.Day,
-                                            inicio.Hour + cantidadHoras,
-                                            inicio.Minute,
-                                            inicio.Second);
 
-            if (DateTime.Compare(fechaServicio, DateTime.Now) > 0 &&
-                 cantidadHoras <= 12 &&
-                 inicio.Hour >= 7 &&
-                 fin.Hour <= 20)
+            if (ValidarFechaServicio(fechaServicio) &&
+                ValidarHorasServicio(cantidadHoras, inicio.Hour, inicio.Hour + cantidadHoras))
             {
                 foreach (PrestadorServicio prestador in prestadores)
                 {
@@ -33,22 +25,14 @@ namespace Business_logic.Services
 
                     foreach (Servicio servicio in servicios)
                     {
-                        if (fechaServicio.Year == servicio.FechaServicio.Year && 
-                            fechaServicio.Month == servicio.FechaServicio.Month &&
-                            fechaServicio.Day == servicio.FechaServicio.Day)
+                        if (SonFechasIguales(fechaServicio, servicio.FechaServicio))
                         {
                             DateTime horaInicio = servicio.HoraServicio;
-                            DateTime horaFin = new DateTime(horaInicio.Year,
-                                                            horaInicio.Month,
-                                                            horaInicio.Day,
-                                                            horaInicio.Hour + servicio.HorasEstimadas,
-                                                            horaInicio.Minute,
-                                                            horaInicio.Second);
 
-                            if ((inicio.Hour >= horaInicio.Hour &&
-                            inicio.Hour <= horaFin.Hour) ||
-                            (fin.Hour <= horaFin.Hour &&
-                            fin.Hour >= horaInicio.Hour))
+                            if (!SeCruzanHoras(horaInicio.Hour, 
+                                horaInicio.Hour + servicio.HorasEstimadas, inicio.Hour,
+                                inicio.Hour + cantidadHoras, horaInicio.Minute, horaInicio.Minute,
+                                inicio.Minute, inicio.Minute))
                             {
                                 estaDisponible = false;
                                 break;
@@ -92,6 +76,51 @@ namespace Business_logic.Services
             }
 
             return prestadoresResultado;
+        }
+
+        private bool ValidarFechaServicio(DateTime fechaServicio)
+        {
+            if (DateTime.Compare(fechaServicio, DateTime.Now) > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool ValidarHorasServicio(int duracion, int horaInicio, int horaFin)
+        {
+            if (duracion <= 12 && horaInicio >= 7 && horaFin <= 20)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool SonFechasIguales(DateTime fecha1, DateTime fecha2)
+        {
+            if (fecha1.Year == fecha2.Year && fecha1.Month == fecha2.Month &&
+            fecha1.Day == fecha2.Day)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool SeCruzanHoras(int horaInicio1, int horaFin1, int horaInicio2, int horaFin2,
+            int minInicial1, int minFinal1, int minInicial2, int minFinal2)
+        {
+            if ((horaInicio1 >= horaInicio2 && horaInicio1 < horaFin2) || 
+                (horaFin1 > horaInicio2 && horaFin1 <= horaFin2) ||
+                (horaInicio1 == horaFin2 && minInicial1 < minFinal2) ||
+                (horaFin1 == horaInicio2 && minFinal1 > minInicial2))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

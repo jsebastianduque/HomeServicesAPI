@@ -46,17 +46,15 @@ namespace Business_logic.Services
 
         public PrestadorServicio AssignService(Servicio servicio, int habilidadEspecificaId)
         {
-            HabilidadEspecifica habilidad = databaseContext.HabilidadesEspecificas.Find(habilidadEspecificaId);
-            IList<PrestadorServicio> prestadores = databaseContext.PrestadoresServicio.ToList();
-            prestadores = serviciosPS.FilterByConcreteSkill(habilidad, prestadores);
-            prestadores = serviciosPS.FilterByCost(servicio.PrecioMinimo, servicio.PrecioMaximo, habilidad,prestadores);
-            prestadores = serviciosPS.FilterByHour(servicio.HoraServicio, servicio.HorasEstimadas, 
-                servicio.FechaServicio, prestadores);
+            PrestadorServicio prestador = ApplyFilters(servicio,
+                databaseContext.HabilidadesEspecificas.Find(habilidadEspecificaId),
+                databaseContext.PrestadoresServicio.ToList()).FirstOrDefault();
+
             servicio.Cliente = databaseContext.Clientes.Find(servicio.ClienteId);
 
-            if (prestadores.Any())
+            if (prestador != null)
             {
-                servicio.PrestadorServicio = prestadores.First();
+                servicio.PrestadorServicio = prestador;
                 Add(servicio);
                 return servicio.PrestadorServicio;
             }
@@ -64,6 +62,17 @@ namespace Business_logic.Services
             {
                 return null;
             }
+        }
+
+        private IList<PrestadorServicio> ApplyFilters(Servicio servicio, 
+            HabilidadEspecifica habilidad, IList<PrestadorServicio> prestadores)
+        {
+            prestadores = serviciosPS.FilterByConcreteSkill(habilidad, prestadores);
+            prestadores = serviciosPS.FilterByCost(servicio.PrecioMinimo, servicio.PrecioMaximo, habilidad, prestadores);
+            prestadores = serviciosPS.FilterByHour(servicio.HoraServicio, servicio.HorasEstimadas,
+                servicio.FechaServicio, prestadores);
+
+            return prestadores;
         }
     }
 }
