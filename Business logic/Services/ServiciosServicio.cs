@@ -13,7 +13,12 @@ namespace Business_logic.Services
     {
         readonly HomeServicesContext databaseContext = new HomeServicesContext();
         readonly ServiciosPS serviciosPS = new ServiciosPS();
-        
+
+        public IList<Servicio> GetClientServices(int idCliente)
+        {
+            return databaseContext.Servicios.Where(servico => servico.ClienteId == idCliente).ToList();
+        }
+
         public Servicio Get(int id)
         {
             return databaseContext.Servicios.Find(id);
