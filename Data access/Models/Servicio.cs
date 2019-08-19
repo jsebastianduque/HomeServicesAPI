@@ -57,6 +57,6 @@ namespace Data_access.Models
         public IList<Pago> Pagos { get; set; }
         public Calificacion Calificacion { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public DateTime FechaMoficiacion { get; set; }
+        public DateTime FechaModificiacion { get; set; }
     }
 }
