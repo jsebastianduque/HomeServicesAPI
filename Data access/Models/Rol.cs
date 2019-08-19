@@ -21,6 +21,6 @@ namespace Data_access.Models
         public string Descripcion { get; set; }
         public IList<Cuenta> Cuentas { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public DateTime FechaMoficiacion { get; set; }
+        public DateTime FechaModificacion { get; set; }
     }
 }

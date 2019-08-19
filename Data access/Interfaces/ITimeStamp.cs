@@ -9,6 +9,6 @@ namespace Data_access.Interfaces
     interface ITimeStamp
     {
         DateTime FechaCreacion { get; set; }
-        DateTime FechaMoficiacion { get; set; }
+        DateTime FechaModificacion { get; set; }
     }
 }

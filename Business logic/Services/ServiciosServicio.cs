@@ -59,9 +59,9 @@ namespace Business_logic.Services
 
             if (prestador != null)
             {
-                servicio.PrestadorServicio = prestador;
+                servicio.PSHabilidadEspecifica.PrestadorServicio = prestador;
                 Add(servicio);
-                return servicio.PrestadorServicio;
+                return servicio.PSHabilidadEspecifica.PrestadorServicio;
             }
             else
             {

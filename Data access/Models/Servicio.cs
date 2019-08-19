@@ -50,13 +50,15 @@ namespace Data_access.Models
         [Required]
         [DefaultValue(false)]
         public bool PSPersonal { get; set; }
+        [DefaultValue(false)]
+        public bool Finalizado { get; set; }
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
-        public int PrestadorServicioId { get; set; }
-        public PrestadorServicio PrestadorServicio { get; set; }
+        public int PSHabilidadEspecificaId { get; set; }
+        public PSHabilidadEspecifica PSHabilidadEspecifica { get; set; }
         public IList<Pago> Pagos { get; set; }
         public Calificacion Calificacion { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public DateTime FechaModificiacion { get; set; }
+        public DateTime FechaModificacion { get; set; }
     }
 }

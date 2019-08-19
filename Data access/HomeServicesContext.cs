@@ -51,7 +51,7 @@ namespace Data_access
                     ((ITimeStamp)entity.Entity).FechaCreacion = DateTime.Now;
                 }
 
-                ((ITimeStamp)entity.Entity).FechaMoficiacion = DateTime.Now;
+                ((ITimeStamp)entity.Entity).FechaModificacion = DateTime.Now;
             }
         }
     }

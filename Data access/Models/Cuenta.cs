@@ -25,6 +25,6 @@ namespace Data_access.Models
         public Rol Rol { get; set; }
         public Persona Persona { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public DateTime FechaMoficiacion { get; set; }
+        public DateTime FechaModificacion { get; set; }
     }
 }

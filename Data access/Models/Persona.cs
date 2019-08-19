@@ -32,6 +32,6 @@ namespace Data_access.Models
         public DateTime FechaNacimiento { get; set; }
         public Cuenta Cuenta { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public DateTime FechaMoficiacion { get; set; }
+        public DateTime FechaModificacion { get; set; }
     }
 }
