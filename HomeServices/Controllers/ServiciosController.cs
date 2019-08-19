@@ -18,5 +18,11 @@ namespace HomeServices.Controllers
         {
             return servicioControl.AssignService(servicio, habilidadEspecificaId);
         }
+
+        [HttpGet]
+        public IList<Servicio> Get(int idCliente)
+        {
+            return servicioControl.GetClientServices(idCliente);
+        }
     }
 }

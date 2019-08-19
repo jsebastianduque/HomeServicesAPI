@@ -25,6 +25,8 @@ namespace Data_access.Models
             PSPersonal = pSPersonal;
         }
 
+        public Servicio() { }
+
         public int Id { get; set; }
         [Required]
         [StringLength(300, MinimumLength = 10)]

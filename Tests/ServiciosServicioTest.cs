@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests
 {
     [TestClass]
-    class ServiciosServicioTest
+    public class ServiciosServicioTest
     {
         readonly HomeServicesContext databaseContext = new HomeServicesContext();
         readonly ServiciosServicio servicioController = new ServiciosServicio();
@@ -17,16 +17,17 @@ namespace Tests
         [TestInitialize]
         public void ConfiguracionPrevia()
         {
-            databaseContext.Database.ExecuteSqlCommand("TRUNCATE TABLE Habilidades");
-            databaseContext.Database.ExecuteSqlCommand(
-                "insert into Habilidades(nombre,Descripcion) values" +
-                " ('Carpinteria','Trabajo manual sobre madera')");
+            databaseContext.Database.ExecuteSqlCommand("DELETE FROM Habilidades");
+            databaseContext.Database.ExecuteSqlCommand("insert into Habilidades(nombre,Descripcion) values ('Carpinteria','Trabajo manual sobre madera')");
 
-            databaseContext.Database.ExecuteSqlCommand("TRUNCATE TABLE HabilidadesEspecificas");
+            databaseContext.Database.ExecuteSqlCommand("DELETE FROM HabilidadesEspecificas");
             databaseContext.Database.ExecuteSqlCommand("insert into HabilidadesEspecificas(nombre,Descripcion,HabilidadId) values ('Carpinteria artesanal','Esculturas y disenios tradicionales sobre madera', (select id from Habilidades where nombre = 'Carpinteria'))");
-            databaseContext.Database.ExecuteSqlCommand("insert into HabilidadesEspecificas(nombre,Descripcion,HabilidadId) values ('Carpinteria en madera artificial', 'Fabricacion y reparacion de estructuras en madera artificial', (select id from Habilidades where nombre = 'Carpinteria'))");
+            databaseContext.Database.ExecuteSqlCommand("insert into HabilidadesEspecificas(nombre,Descripcion,HabilidadId) values ('Carpinteria en madera artifici', 'Fabricacion y reparacion de estructuras en madera artificial', (select id from Habilidades where nombre = 'Carpinteria'))");
 
-            databaseContext.Database.ExecuteSqlCommand("TRUNCATE TABLE Personas");
+            databaseContext.Database.ExecuteSqlCommand("DELETE FROM Servicios");
+            databaseContext.Database.ExecuteSqlCommand("DELETE FROM PrestadoresServicio");
+            databaseContext.Database.ExecuteSqlCommand("DELETE FROM Clientes");
+            databaseContext.Database.ExecuteSqlCommand("DELETE FROM Personas");
             // Clientes
             databaseContext.Database.ExecuteSqlCommand("insert into Personas(nombres,apellidos,cedula,Direccion,telefono,FechaNacimiento) values ('Jose', 'Montoya', '43985039', 'carrera 78', '911911321', CAST(N'1985-07-26' AS datetime))");
             databaseContext.Database.ExecuteSqlCommand("insert into Personas(nombres,apellidos,cedula,Direccion,telefono,FechaNacimiento) values ('John', 'Gallardo Lopez', '5832013', 'carrera 78', '911911321', CAST(N'1983-07-26' AS datetime))");
@@ -37,12 +38,10 @@ namespace Tests
             databaseContext.Database.ExecuteSqlCommand("insert into Personas(nombres,apellidos,cedula,Direccion,telefono,FechaNacimiento) values ('Juan', 'Trigueros Salazar', '90948291', 'carrera 78', '911911321', CAST(N'1988-07-26' AS datetime))");
             databaseContext.Database.ExecuteSqlCommand("insert into Personas(nombres,apellidos,cedula,Direccion,telefono,FechaNacimiento) values ('Jorge', 'Vallejo Pelayo', '93488238', 'carrera 78', '911911321', CAST(N'1981-07-26' AS datetime))");
 
-            databaseContext.Database.ExecuteSqlCommand("TRUNCATE TABLE PrestadoresServicio");
             databaseContext.Database.ExecuteSqlCommand("insert into PrestadoresServicio(FechaAfiliacion,Id) values (CAST(N'2017-07-26' AS datetime), (Select id from Personas where cedula = '43985039'))");
             databaseContext.Database.ExecuteSqlCommand("insert into PrestadoresServicio(FechaAfiliacion,Id) values (CAST(N'2017-07-26' AS datetime), (Select id from Personas where cedula = '5832013'))");
             databaseContext.Database.ExecuteSqlCommand("insert into PrestadoresServicio(FechaAfiliacion,Id) values (CAST(N'2017-07-26' AS datetime), (Select id from Personas where cedula = '6920384'))");
 
-            databaseContext.Database.ExecuteSqlCommand("TRUNCATE TABLE Clientes");
             databaseContext.Database.ExecuteSqlCommand("insert into Clientes(id,Puntos) values ((select id from personas where cedula = '230984823'), 0)");
             databaseContext.Database.ExecuteSqlCommand("insert into Clientes(id,Puntos) values ((select id from personas where cedula = '34823821'), 0)");
             databaseContext.Database.ExecuteSqlCommand("insert into Clientes(id,Puntos) values ((select id from personas where cedula = '90948291'), 0)");
