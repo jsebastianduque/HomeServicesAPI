@@ -31,6 +31,14 @@ namespace Data_access
             modelBuilder.Entity<Servicio>().Property(atributo => atributo.PrecioMinimo).HasPrecision(11, 2);
             modelBuilder.Entity<PSHabilidadEspecifica>().Property(atributo => atributo.PrecioHora).HasPrecision(11, 2);
             modelBuilder.Entity<Pago>().Property(atributo => atributo.Monto).HasPrecision(11, 2);
+            modelBuilder.Entity<Habilidad>().Property(atributo => atributo.FechaCreacion).IsOptional();
+            modelBuilder.Entity<Habilidad>().Property(atributo => atributo.FechaModificacion).IsOptional();
+            modelBuilder.Entity<HabilidadEspecifica>().Property(atributo => atributo.FechaCreacion).IsOptional();
+            modelBuilder.Entity<HabilidadEspecifica>().Property(atributo => atributo.FechaModificacion).IsOptional();
+            modelBuilder.Entity<Persona>().Property(atributo => atributo.FechaCreacion).IsOptional();
+            modelBuilder.Entity<Persona>().Property(atributo => atributo.FechaModificacion).IsOptional();
+            modelBuilder.Entity<Servicio>().Property(atributo => atributo.FechaCreacion).IsOptional();
+            modelBuilder.Entity<Servicio>().Property(atributo => atributo.FechaModificacion).IsOptional();
             base.OnModelCreating(modelBuilder);
         }
 

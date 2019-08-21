@@ -13,7 +13,6 @@ namespace Data_access.Models
     public class PrestadorServicio : Persona
     {
         public DateTime FechaAfiliacion { get; set; }
-        public virtual IList<Servicio> Servicios { get; set; }
         public virtual IList<PSHabilidadEspecifica> Habilidades { get; set; }
     }
 }

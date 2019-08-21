@@ -49,7 +49,7 @@ namespace Business_logic.Services
             databaseContext.SaveChanges();
         }
 
-        public PrestadorServicio AssignService(Servicio servicio, int habilidadEspecificaId)
+        public Servicio AssignService(Servicio servicio, int habilidadEspecificaId)
         {
             PrestadorServicio prestador = ApplyFilters(servicio,
                 databaseContext.HabilidadesEspecificas.Find(habilidadEspecificaId),
@@ -59,9 +59,12 @@ namespace Business_logic.Services
 
             if (prestador != null)
             {
-                servicio.PSHabilidadEspecifica.PrestadorServicio = prestador;
+                servicio.PSHabilidadEspecifica = prestador.Habilidades.FirstOrDefault(hab => hab.HabilidadEspecificaId == habilidadEspecificaId);
+                servicio.PSHabilidadEspecificaId = servicio.PSHabilidadEspecifica.Id;
+                //servicio.PSHabilidadEspecifica.PrestadorServicio = prestador;
                 Add(servicio);
-                return servicio.PSHabilidadEspecifica.PrestadorServicio;
+                //return servicio.PSHabilidadEspecifica.PrestadorServicio;
+                return servicio;
             }
             else
             {

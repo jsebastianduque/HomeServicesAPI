@@ -16,7 +16,7 @@ namespace HomeServices.Controllers
     public class HabilidadesController : ApiController
     {
 
-        ServiciosHabilidad habilidades = new ServiciosHabilidad();
+        readonly ServiciosHabilidad habilidades = new ServiciosHabilidad();
 
 
         /// <summary>Permite 

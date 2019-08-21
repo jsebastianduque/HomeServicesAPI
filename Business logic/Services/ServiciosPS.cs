@@ -21,7 +21,22 @@ namespace Business_logic.Services
             {
                 foreach (PrestadorServicio prestador in prestadores)
                 {
-                    IList<Servicio> servicios = prestador.Servicios.ToList();
+                    IList<Servicio> servicios = new List<Servicio>();
+
+                    foreach (PSHabilidadEspecifica ps_habilidad in prestador.Habilidades)
+                    {
+                        if (ps_habilidad.Servicios != null)
+                        {
+                            if (servicios.Any())
+                            {
+                                servicios = servicios.Concat(ps_habilidad.Servicios).ToList();
+                            }
+                            else
+                            {
+                                servicios = ps_habilidad.Servicios.ToList();
+                            }
+                        }
+                    }
 
                     foreach (Servicio servicio in servicios)
                     {

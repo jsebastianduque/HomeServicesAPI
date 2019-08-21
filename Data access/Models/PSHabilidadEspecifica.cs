@@ -23,6 +23,7 @@ namespace Data_access.Models
         public PrestadorServicio PrestadorServicio { get; set; }
         public int HabilidadEspecificaId { get; set; }
         public HabilidadEspecifica HabilidadEspecifica { get; set; }
+        public IList<Servicio> Servicios { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaModificacion { get; set; }
     }

@@ -14,7 +14,7 @@ namespace HomeServices.Controllers
         readonly ServiciosServicio servicioControl = new ServiciosServicio();
 
         [HttpPost]
-        public PrestadorServicio Post(Servicio servicio, int habilidadEspecificaId)
+        public Servicio Post(Servicio servicio, int habilidadEspecificaId)
         {
             return servicioControl.AssignService(servicio, habilidadEspecificaId);
         }
